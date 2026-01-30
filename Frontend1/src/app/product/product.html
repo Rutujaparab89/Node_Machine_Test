@@ -1,0 +1,100 @@
+<div class="container mt-4">
+
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <input
+        class="form-control"
+        placeholder="Product name"
+        [(ngModel)]="productName"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <select class="form-control" [(ngModel)]="categoryId">
+        <option [ngValue]="null">Select Category</option>
+        <option *ngFor="let c of categories" [ngValue]="c.category_id">
+          {{ c.category_name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <button
+        class="btn btn-primary me-2"
+        *ngIf="editId === null"
+        (click)="addProduct()"
+      >
+        Add
+      </button>
+
+      <button
+        class="btn btn-success me-2"
+        *ngIf="editId !== null"
+        (click)="updateProduct()"
+      >
+        Update
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        *ngIf="editId !== null"
+        (click)="resetForm()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Category ID</th>
+        <th>Category Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{ p.product_id }}</td>
+        <td>{{ p.product_name }}</td>
+        <td>{{ p.category_id }}</td>
+        <td>{{ p.category_name }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm me-2" (click)="editProduct(p)">
+            Edit
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="deleteProduct(p.product_id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between align-items-center mt-3">
+  <button
+    class="btn btn-outline-primary"
+    (click)="prevPage()"
+    [disabled]="page === 1"
+  >
+    Previous
+  </button>
+
+  <span class="fw-bold">
+    Page {{ page }} / {{ totalPages }}
+  </span>
+
+  <button
+    class="btn btn-outline-primary"
+    (click)="nextPage()"
+    [disabled]="page === totalPages"
+  >
+    Next
+  </button>
+</div>
+
+
+</div>

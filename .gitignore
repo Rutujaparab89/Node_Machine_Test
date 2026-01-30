@@ -1,0 +1,22 @@
+# Node
+node_modules/
+
+# Angular
+dist/
+.angular/
+out-tsc/
+
+# Environment files
+.env
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

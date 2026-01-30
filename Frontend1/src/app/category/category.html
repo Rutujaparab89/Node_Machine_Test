@@ -1,0 +1,66 @@
+<div class="container mt-4">
+
+  <!-- Form -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <input
+        type="text"
+        [(ngModel)]="categoryName"
+        class="form-control"
+        placeholder="Category name"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <button
+        class="btn btn-primary me-2"
+        *ngIf="editId === null"
+        (click)="addCategory()"
+      >
+        Add
+      </button>
+
+      <button
+        class="btn btn-success me-2"
+        *ngIf="editId !== null"
+        (click)="updateCategory()"
+      >
+        Update
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        *ngIf="editId !== null"
+        (click)="resetForm()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Category Id</th>
+        <th>Category Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of categories">
+      <td>{{ c.category_id }}</td>
+      <td>{{ c.category_name }}</td>
+      <td>
+        <button class="btn btn-sm btn-warning me-2" (click)="editCategory(c)">
+          Edit
+        </button>
+        <button class="btn btn-sm btn-danger" (click)="deleteCategory(c.category_id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
